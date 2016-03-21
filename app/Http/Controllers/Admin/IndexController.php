@@ -12,6 +12,6 @@ class IndexController extends Controller
 
     function index()
     {
-        return 132131;
+        return view('admin.index.index');
     }
 }

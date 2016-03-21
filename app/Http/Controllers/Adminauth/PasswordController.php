@@ -7,6 +7,12 @@ use Illuminate\Foundation\Auth\ResetsPasswords;
 
 class PasswordController extends Controller
 {
+    protected $guard = 'admin';
+    protected $broker = 'admins';
+
+    protected $linkRequestView = 'admin.auth.passwords.email';
+    protected $resetView = 'admin.auth.passwords.reset';
+    protected $subject = '你在xShop的密码重置链接';
     /*
     |--------------------------------------------------------------------------
     | Password Reset Controller

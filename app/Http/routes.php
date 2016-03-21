@@ -31,10 +31,6 @@ Route::group(['middleware' => ['web']], function () {
 });
 
 
-
-
-
-
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
 
@@ -46,27 +42,54 @@ Route::group(['middleware' => 'web'], function () {
  */
 Route::group(['namespace' => 'Adminauth', 'prefix' => 'admin'], function () {
     // Login Routes...
-    Route::get('/login','AuthController@showLoginForm');
-    Route::post('/login','AuthController@login');
+    Route::get('/login', 'AuthController@showLoginForm');
+    Route::post('/login', 'AuthController@login');
 
 
-    Route::get('/password/reset/{token?}','PasswordController@showResetForm');
-    Route::post('/password/reset','PasswordController@reset');
-    Route::post('/password/email','PasswordController@sendResetLinkEmail');
+    Route::get('/password/reset/{token?}', 'PasswordController@showResetForm');
+    Route::post('/password/reset', 'PasswordController@reset');
+    Route::post('/password/email', 'PasswordController@sendResetLinkEmail');
 
     // Registration Routes...
     Route::get('register', 'AuthController@showRegistrationForm');
     Route::post('register', 'AuthController@register');
 
     //Logout Routes...
-    Route::get('logout','AuthController@logout');
+    Route::get('logout', 'AuthController@logout');
 });
 
+Route::group(['middleware' => ['web', 'auth']], function () {
 
-Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admin'], function () {
-    //后台首页
-    Route::get('/', 'IndexController@index');
 
-    //商品品牌
-//    Route::resource('brand', 'BrandController');
+    Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admin'], function () {
+        //后台首页
+        Route::get('/', 'IndexController@index');
+
+        Route::patch('/brand/sort_order', 'BrandController@sort_order');
+        Route::patch('/brand/is_show', 'BrandController@is_show');
+        //商品品牌
+        Route::resource('brand', 'BrandController');
+
+
+        Route::patch('/category/sort_order', 'CategoryController@sort_order');
+        Route::patch('/category/is_show', 'CategoryController@is_show');
+        //商品栏目
+        Route::resource('category', 'CategoryController');
+
+
+
+
+
+        //商品列表goods
+        Route::get('/good/search', 'GoodController@search');
+
+        Route::resource('good', 'GoodController');
+
+
+        //回收站
+        Route::get('/trash', 'TrashController@index');
+
+    });
 });
+
+Route::post('/upload', 'FileController@upload');
