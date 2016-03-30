@@ -105,42 +105,14 @@
                                     colspan="1" aria-label=" Points : activate to sort column ascending"
                                     style="width: 88px;"> 商品缩略图
                                 </th>
-                                <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
-                                    colspan="1" aria-label=" Notes : activate to sort column ascending"
-                                    style="width: 80px;"> 品牌
-                                </th>
-                                <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
-                                    colspan="1" aria-label=" Notes : activate to sort column ascending"
-                                    style="width: 80px;"> 分类
-                                </th>
+
                                 <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
                                     colspan="1" aria-label=" Notes : activate to sort column ascending"
                                     style="width: 60px;"> 价格
                                 </th>
-                                <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
-                                    colspan="1" aria-label=" Notes : activate to sort column ascending"
-                                    style="width: 10px;"> 上架
-                                </th>
-                                <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
-                                    colspan="1" aria-label=" Notes : activate to sort column ascending"
-                                    style="width: 10px;"> 精品
-                                </th>
-                                <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
-                                    colspan="1" aria-label=" Notes : activate to sort column ascending"
-                                    style="width: 10px;"> 新品
-                                </th>
-                                <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
-                                    colspan="1" aria-label=" Notes : activate to sort column ascending"
-                                    style="width: 10px;"> 热销
-                                </th>
-                                <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
-                                    colspan="1" aria-label=" Notes : activate to sort column ascending"
-                                    style="width: 10px;"> 推荐排序
-                                </th>
-                                <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
-                                    colspan="1" aria-label=" Notes : activate to sort column ascending"
-                                    style="width: 10px;"> 库存
-                                </th>
+
+
+
                                 <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
                                     colspan="1" aria-label=" Edit : activate to sort column ascending"
                                     style="width: 150px;"> 操作
@@ -149,62 +121,28 @@
                             </tr>
                             </thead>
 
-                            {{--<tbody>--}}
-                            {{--@foreach($goods as $g)--}}
-                                {{--<tr role="row" class="odd">--}}
-                                    {{--<td class="sorting_1">--}}
-                                        {{--<label> <input type="checkbox" value="{{$g->id}}">--}}
-                                        {{--</label>--}}
-                                    {{--</td>--}}
-                                    {{--<td>{{$g->name}}</td>--}}
-                                    {{--<td><img src="" alt=""></td>--}}
-                                    {{--<td class="center"><a href="">{{$g->brand->name}}</a></td>--}}
-                                    {{--<td>{{$g->category->name}}</td>--}}
-                                    {{--<td>{{$g->price}}</td>--}}
-                                    {{--<td>--}}
-                                        {{--<div class="fa-item col-md-3 col-sm-4">--}}
-                                            {{--<i data-id="{{$g->id}}" @if($g->onsale==1) class="fa  is_show fa-check "--}}
-                                               {{--value="1"--}}
-                                               {{--@else class="fa is_show fa-times" value="0"--}}
-                                                    {{--@endif></i></div>--}}
-                                    {{--</td>--}}
-                                    {{--<td>--}}
-                                        {{--<div class="fa-item col-md-3 col-sm-4">--}}
-                                            {{--<i data-id="{{$g->id}}" @if($g->new==1) class="fa  is_show fa-check "--}}
-                                               {{--value="1"--}}
-                                               {{--@else class="fa is_show fa-times" value="0"--}}
-                                                    {{--@endif></i></div>--}}
-                                    {{--</td>--}}
-                                    {{--<td>--}}
-                                        {{--<div class="fa-item col-md-3 col-sm-4">--}}
-                                            {{--<i data-id="{{$g->id}}" @if($g->hot==1) class="fa  is_show fa-check "--}}
-                                               {{--value="1"--}}
-                                               {{--@else class="fa is_show fa-times" value="0"--}}
-                                                    {{--@endif></i></div>--}}
-                                    {{--</td>--}}
-                                    {{--<td>--}}
-                                        {{--<div class="fa-item col-md-3 col-sm-4">--}}
-                                            {{--<i data-id="{{$g->id}}" @if($g->recommend==1) class="fa  is_show fa-check "--}}
-                                               {{--value="1"--}}
-                                               {{--@else class="fa is_show fa-times" value="0"--}}
-                                                    {{--@endif></i></div>--}}
-                                    {{--</td>--}}
+                            <tbody>
+                            @foreach($goods as $g)
+                                <tr role="row" class="odd">
+                                    <td class="sorting_1">
+                                        <label> <input type="checkbox" value="{{$g->id}}">
+                                        </label>
+                                    </td>
+                                    <td>{{$g->name}}</td>
+                                    <td><img src="" alt=""></td>
+                                    <td>{{$g->price}}</td>
 
-                                    {{--<td class="center">--}}
-                                        {{--<input type="text" data-id=" " class="sort_order" value="{{$g->sort_order}}"--}}
-                                               {{--style="width: 45px"></td>--}}
-                                    {{--<td>{{$g->inventory}}</td>--}}
-                                    {{--<td>--}}
-                                        {{--<a href="good/{{$g->id}}/edit" class="btn btn-sm red"> edit--}}
-                                            {{--<i class="fa fa-edit"></i>--}}
-                                        {{--</a>--}}
-                                        {{--<a href="good/{{$g->id}}" class="btn btn-sm purple" data-method="delete"--}}
-                                           {{--data-token="{{csrf_token()}}" data-confirm="确认删除当前品牌吗?">--}}
-                                            {{--<i class="fa fa-times"></i> delete </a>--}}
-                                    {{--</td>--}}
-                                {{--</tr>--}}
-                            {{--@endforeach--}}
-                            {{--</tbody>--}}
+                                    <td>
+                                        <a href="trash/{{$g->id}}/restore" class="btn btn-sm green"> 还原
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                        <a href="trash/{{$g->id}}/forceDelete" class="btn btn-sm purple"
+                                           data-confirm="确认删除当前品牌吗?">
+                                            <i class="fa fa-times"></i> 删除 </a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
                         </table>
                     </div>
                     <div class="row">

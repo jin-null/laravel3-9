@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
 
 /*
 |--------------------------------------------------------------------------
@@ -25,17 +25,25 @@ Route::get('/', function () {
 | kernel and includes session state, CSRF protection, and more.
 |
 */
+/*前台*/
+
+Route::group(['namespace'=>'Home'],function()
+{
+    Route::get('/','IndexController@index');
+});
+
+
 
 Route::group(['middleware' => ['web']], function () {
     //
 });
 
 
-Route::group(['middleware' => 'web'], function () {
-    Route::auth();
-
-    Route::get('/home', 'HomeController@index');
-});
+//Route::group(['middleware' => 'web'], function () {
+//    Route::auth();
+//
+//    Route::get('/home', 'HomeController@index');
+//});
 
 /**
  * 管理员登录注册
@@ -81,14 +89,21 @@ Route::group(['middleware' => ['web', 'auth']], function () {
 
 
         //商品列表goods
+        Route::patch('/good/change_attr', 'GoodController@change_attr');
         Route::get('/good/search', 'GoodController@search');
 
         Route::resource('good', 'GoodController');
 
 
         //回收站
+        Route::get('/trash/{id}/restore', 'TrashController@restore');
+        Route::get('/trash/{id}/forceDelete', 'TrashController@forceDelete');
         Route::get('/trash', 'TrashController@index');
 
+
+        //物流管理
+
+        Route::get('/express', 'ExpressController@index');
     });
 });
 

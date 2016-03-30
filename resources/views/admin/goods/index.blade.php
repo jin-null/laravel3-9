@@ -163,28 +163,28 @@
                                     <td>{{$g->price}}</td>
                                     <td>
                                         <div class="fa-item col-md-3 col-sm-4">
-                                            <i data-id="{{$g->id}}" @if($g->onsale==1) class="fa  is_show fa-check "
+                                            <i data-id="{{$g->id}}" data-type="onsale" @if($g->onsale==1) class="fa  is_show fa-check "
                                                value="1"
                                                @else class="fa is_show fa-times" value="0"
                                                     @endif></i></div>
                                     </td>
                                     <td>
                                         <div class="fa-item col-md-3 col-sm-4">
-                                            <i data-id="{{$g->id}}" @if($g->new==1) class="fa  is_show fa-check "
+                                            <i data-id="{{$g->id}}"data-type="new"  @if($g->new==1) class="fa  is_show fa-check "
                                                value="1"
                                                @else class="fa is_show fa-times" value="0"
                                                     @endif></i></div>
                                     </td>
                                     <td>
                                         <div class="fa-item col-md-3 col-sm-4">
-                                            <i data-id="{{$g->id}}" @if($g->hot==1) class="fa  is_show fa-check "
+                                            <i data-id="{{$g->id}}"data-type="hot"  @if($g->hot==1) class="fa  is_show fa-check "
                                                value="1"
                                                @else class="fa is_show fa-times" value="0"
                                                     @endif></i></div>
                                     </td>
                                     <td>
                                         <div class="fa-item col-md-3 col-sm-4">
-                                            <i data-id="{{$g->id}}" @if($g->recommend==1) class="fa  is_show fa-check "
+                                            <i data-id="{{$g->id}}"data-type="recommend"  @if($g->recommend==1) class="fa  is_show fa-check "
                                                value="1"
                                                @else class="fa is_show fa-times" value="0"
                                                     @endif></i></div>
@@ -254,26 +254,41 @@
 
         $(function () {
             $(".is_show").click(function () {
-                $is_show = $(this).attr("value");
-                if ($is_show == 1) {
+                var is_show = $(this).attr("value");
+                if (is_show == 1) {
                     $(this).attr("class", "fa is_show fa-times").attr("value", 0);
-                    $is_show = 0;
+                    is_show = 0;
                 } else {
                     $(this).attr("class", "fa is_show fa-check").attr("value", 1);
-                    $is_show = 1;
+                    is_show = 1;
                 }
 
+//                alert(is_show);
                 var info = {
+                    type:$(this).data("type"),
                     id: $(this).data("id"),
-                    is_show: $(this).attr("value")
+                    is_show:is_show
                 }
-                console.log(info);
-                $.ajax({
-                    type: "PATCH",
-                    data: info,
-                    url: "/admin/brand/is_show",
-                });
 //
+                console.log(info);
+
+//                $.ajax({
+//                    type: "PATCH",
+//                    data: info,
+//                    url: "/admin/good/change_attr",
+//                    success:function(data){
+//                        console.log(data);
+//                    }
+//                });
+//
+                $.ajax({
+                    type:'PATCH',
+                    data:info,
+                    url:"/admin/good/change_attr",
+                    success:function(data){
+                        console.log(data);
+                    }
+                })
             });
         })
     </script>

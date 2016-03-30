@@ -15,14 +15,14 @@
         </div>
         <div class="portlet-body form">
             <!-- BEGIN FORM-->
-            <form class="form-horizontal" role="form" action="{{route('admin.good.store')}}" method="post">
-                {!! csrf_field() !!}
+            <form class="form-horizontal" role="form" action="{{route('admin.good.update',$good->id)}}" method="post">
+                {!! method_field('put') !!}}   {!! csrf_field() !!}
                 <div class="form-body">
                     <div class="form-group">
                         <label class="col-md-3 control-label">商品名称</label>
 
                         <div class="col-md-4">
-                            <input type="text" class="form-control" name="name">
+                            <input type="text" class="form-control" name="name" value="{{$good->name}}">
 
                         </div>
                     </div>
@@ -38,7 +38,9 @@
 
                                 <option value="0">顶级栏目</option>
                                 @foreach($categories as $category)
-                                <option value="{{$category->id}}">{{ blank_to_category($category->count) }}{{$category->name}}</option>
+                                <option value="{{$category->id}}"
+                                        @if($good->category_id==$category->id) selected @endif>
+                                    {{ blank_to_category($category->count) }}{{$category->name}}</option>
                                 @endforeach
 
                             </select>
@@ -73,7 +75,9 @@
 
                                 <option value="0">选择品牌</option>
                                 @foreach($brands as $brand)
-                                <option value="{{$brand->id}}">{{$brand->name}}</option>
+                                <option value="{{$brand->id}}"
+                                        @if($good->brand_id==$brand->id) selected @endif>
+                                    {{$brand->name}}</option>
                                 @endforeach
 
                             </select>
@@ -105,7 +109,7 @@
 
                                 <span class="input-group-addon bootstrap-touchspin-prefix"
                                       style="display: none;"></span>
-                                <input id="touchspin_6" type="text" value="0" name="price" class="form-control"
+                                <input id="touchspin_6" type="text" value="{{$good->price}}" name="price" class="form-control"
                                        style="display: block;">
                                 <span class="input-group-addon bootstrap-touchspin-postfix"
                                       style="display: none;"></span>
@@ -121,7 +125,7 @@
 
                                 <span class="input-group-addon bootstrap-touchspin-prefix"
                                       style="display: none;"></span>
-                                <input id="touchspin_5" type="text" value="0" name="inventory"
+                                <input id="touchspin_5" type="text" value="{{$good->inventory}}" name="inventory"
                                        class="form-control" style="display: block;">
                                 <span class="input-group-addon bootstrap-touchspin-postfix"
                                       style="display: none;"></span>
@@ -134,12 +138,15 @@
 
                         <div class="col-md-4">
                             <div class="btn-group" data-toggle="buttons">
-                                <label class="btn btn-default ">
+                                <label @if ($good->recommend==1)class="btn btn-default active"
+                                       @else class="btn btn-default" @endif >
                                     <input type="checkbox" class="toggle" name="recommend" value="1"> 推荐 </label>
-                                <label class="btn btn-default">
+                                <label @if ($good->new==1)class="btn btn-default active"
+                                @else class="btn btn-default" @endif >
                                     <input type="checkbox" class="toggle" name="new" value="1"> 新品 </label>
-                                <label class="btn btn-default ">
-                                    <input type="checkbox" class="toggle" name="hot" value="1"> 热卖 </label>
+                                <label @if ($good->hot==1)class="btn btn-default active"
+                                        @else class="btn btn-default" @endif >
+                                    <input type="checkbox" class="toggle" name="hot"  value="1"> 热卖 </label>
                             </div>
                         </div>
                     </div>
@@ -221,4 +228,7 @@
             window.editor = K.create('#editor_id');
         });
     </script>
+
+
+
 @endsection

@@ -558,61 +558,31 @@ License: You must have a valid license purchased only from themeforest(the above
 						</li>
 					</ul>
 				</li>
+
+				<li class="nav-item  ">
+					<a href="/admin/order:;" class="nav-link nav-toggle">
+						<i class="icon-list"></i>
+						<span class="title">订单管理</span>
+					</a>
+
+				</li>
+
 				<li class="nav-item  ">
 					<a href="javascript:;" class="nav-link nav-toggle">
-						<i class="icon-briefcase"></i>
-						<span class="title">Tables</span>
+						<i class="icon-settings"></i>
+						<span class="title">系统设置</span>
 						<span class="arrow"></span>
 					</a>
 					<ul class="sub-menu">
+
 						<li class="nav-item  ">
-							<a href="javascript:;" class="nav-link nav-toggle">
-								<span class="title">Static Tables</span>
-								<span class="arrow"></span>
-							</a>
-							<ul class="sub-menu">
-								<li class="nav-item ">
-									<a href="table_static_basic.html" class="nav-link "> Basic Tables </a>
-								</li>
-								<li class="nav-item ">
-									<a href="table_static_responsive.html" class="nav-link "> Responsive Tables </a>
-								</li>
-							</ul>
+							<a href="/admin/good" class="nav-link ">
+								<i class="fa fa-list"></i>商品设置</a>
 						</li>
+
 						<li class="nav-item  ">
-							<a href="javascript:;" class="nav-link nav-toggle">
-								<span class="title">Datatables</span>
-								<span class="arrow"></span>
-							</a>
-							<ul class="sub-menu">
-								<li class="nav-item ">
-									<a href="table_datatables_managed.html" class="nav-link "> Managed Datatables </a>
-								</li>
-								<li class="nav-item ">
-									<a href="table_datatables_buttons.html" class="nav-link "> Buttons Extension </a>
-								</li>
-								<li class="nav-item ">
-									<a href="table_datatables_colreorder.html" class="nav-link "> Colreorder Extension </a>
-								</li>
-								<li class="nav-item ">
-									<a href="table_datatables_rowreorder.html" class="nav-link "> Rowreorder Extension </a>
-								</li>
-								<li class="nav-item ">
-									<a href="table_datatables_scroller.html" class="nav-link "> Scroller Extension </a>
-								</li>
-								<li class="nav-item ">
-									<a href="table_datatables_fixedheader.html" class="nav-link "> FixedHeader Extension </a>
-								</li>
-								<li class="nav-item ">
-									<a href="table_datatables_responsive.html" class="nav-link "> Responsive Extension </a>
-								</li>
-								<li class="nav-item ">
-									<a href="table_datatables_editable.html" class="nav-link "> Editable Datatables </a>
-								</li>
-								<li class="nav-item ">
-									<a href="table_datatables_ajax.html" class="nav-link "> Ajax Datatables </a>
-								</li>
-							</ul>
+							<a href="/admin/express" class="nav-link ">
+								<i class="fa fa-trash"></i>物流运费</a>
 						</li>
 					</ul>
 				</li>

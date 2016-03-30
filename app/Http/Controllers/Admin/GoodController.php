@@ -32,6 +32,7 @@ class GoodController extends Controller
 
     function store(Request $request)
     {
+        return $request->all();
         $good=Good::create($request->all());
         return redirect(route('admin.good.index'));
     }
@@ -39,7 +40,11 @@ class GoodController extends Controller
 
     function destroy($id)
     {
-        Good::destroy($id);
+//        Good::destroy($id);
+//        return redirect(route('admin.good.index'));
+
+        $goods = Good::find($id);
+        $goods->delete();
         return redirect(route('admin.good.index'));
     }
 
@@ -54,6 +59,17 @@ class GoodController extends Controller
             ->with('brands',$brands);
     }
 
+    function update(Request $request,$id)
+    {
+//        return $request->all();
+        $result =$request->all();
+        $result = isset($request->recommend)? $result : array_add($result,'recommend',0);
+        $result = isset($request->hot)? $result : array_add($result,'hot',0);
+        $result = isset($request->new)? $result : array_add($result,'new',0);
+        Good::find($id)->update($result);
+        return redirect(route('admin.good.index'));
+    }
+
 
     function search(Request $request)
     {
@@ -62,4 +78,15 @@ class GoodController extends Controller
         return view('admin.goods.index')->with('goods',$goods);
 
     }
+
+    function change_attr(Request $request)
+    {
+//        $value=$request->value=="true"?1:0;
+//        $good=Good::find($request->id);
+//        $good->update([$request->type=>$value]);
+        $value = $request->value =="true" ? 1 : 0;
+        Good::find($request->id)->update([$request->type => $value]);
+    }
+
+
 }
